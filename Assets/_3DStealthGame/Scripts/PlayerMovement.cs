@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody m_Rigidbody;
     Vector3 m_Movement;
     Quaternion m_Rotation = Quaternion.identity;
+    Animator m_Animator;
 
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         MoveAction.Enable();
+        m_Animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -35,5 +37,9 @@ public class PlayerMovement : MonoBehaviour
 
         m_Rigidbody.MoveRotation(m_Rotation);
         m_Rigidbody.MovePosition(m_Rigidbody.position + m_Movement * walkSpeed * Time.deltaTime);
+        bool hasHorizontalInput = !Mathf.Approximately(horizontal, 0f);
+        bool hasVerticalInput = !Mathf.Approximately(vertical, 0f);
+        bool isWalking = hasHorizontalInput || hasVerticalInput;
+        m_Animator.SetBool("IsWalking", isWalking);
     }
 }
