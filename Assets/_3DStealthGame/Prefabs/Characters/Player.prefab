@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 875591311819990454}
+  - component: {fileID: 5030093328487734505}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32,6 +33,14 @@ Transform:
   - {fileID: 1057660939834004537}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &5030093328487734505
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4304971027061593058}
+  m_Enabled: 1
 --- !u!1001 &659540366783017938
 PrefabInstance:
   m_ObjectHideFlags: 0
