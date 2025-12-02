@@ -304,7 +304,12 @@ MonoBehaviour:
       m_Flags: 8
     m_Flags: 0
   walkSpeed: 1
+  runSpeed: 2
   turnSpeed: 20
+  running: 0
+  StaminaBar: {fileID: 0}
+  Stamina: 100
+  MaxStamina: 100
 --- !u!4 &1057660939834004537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d7b34bc56da58746ab5ca5a13fe1685,
