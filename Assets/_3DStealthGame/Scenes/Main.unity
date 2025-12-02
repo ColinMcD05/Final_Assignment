@@ -1294,12 +1294,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 836639007}
   m_CullTransparentMesh: 1
---- !u!1 &855845376 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4304971027061593058, guid: f0a331e11b4b61f4d869585e3b845476,
-    type: 3}
-  m_PrefabInstance: {fileID: 1425216089635745978}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &905652962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,6 +1519,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 494429524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1096545545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 425099413118832259, guid: f0a331e11b4b61f4d869585e3b845476,
+    type: 3}
+  m_PrefabInstance: {fileID: 1425216089635745978}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1135960493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2601,7 +2601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameEnding
   fadeDuration: 1
   displayImageDuration: 1
-  player: {fileID: 855845376}
+  player: {fileID: 1096545545}
   uiDocument: {fileID: 1813796302}
   exitAudio: {fileID: 25876879}
   caughtAudio: {fileID: 577647944}
