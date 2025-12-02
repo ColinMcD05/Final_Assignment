@@ -1,32 +1,53 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class WaypointPatrol : MonoBehaviour
 {
-    public float moveSpeed = 1.0f;
     public Transform[] waypoints;
+    public float moveSpeed = 1f;
+    public float rotationSpeed = 5f;
+    public float reachDistance = 0.1f;
 
-    private Rigidbody m_RigidBody;
-    int m_CurrentWaypointIndex;
+    private int currentWaypointIndex = 0;
+    private float waitCounter = 0f;
 
-    void Start()
+    void Update()
     {
-        m_RigidBody = GetComponent<Rigidbody>();
-    }
+        if (waypoints == null || waypoints.Length == 0)
+            return;
 
-    void FixedUpdate()
-    {
-        Transform currentWaypoint = waypoints[m_CurrentWaypointIndex];
-        Vector3 currentToTarget = currentWaypoint.position - m_RigidBody.position;
-
-        if (currentToTarget.magnitude < 0.1f)
+        // pausecounter 
+        if (waitCounter > 0f)
         {
-            m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
+            waitCounter -= Time.deltaTime;
+            return;
         }
-        Quaternion forwardRotation = Quaternion.LookRotation(currentToTarget);
-        m_RigidBody.MoveRotation(forwardRotation);
-        m_RigidBody.MovePosition(m_RigidBody.position + currentToTarget.normalized * moveSpeed * Time.deltaTime);
+
+        Transform target = waypoints[currentWaypointIndex];
+
+        // rotation
+        Vector3 direction = (target.position - transform.position).normalized;
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+        }
+
+        // Moving
+        transform.position = Vector3.MoveTowards(
+            transform.position,
+            target.position,
+            moveSpeed * Time.deltaTime
+        );
+
+        // Check if distance is close enough before switching
+        if ((transform.position - target.position).sqrMagnitude < reachDistance * reachDistance)
+        {
+            currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+            waitCounter = Random.Range(1f, 3f);  // Adds random wait at each waypoint between 1 to 3 seconds
+        }
     }
 }
